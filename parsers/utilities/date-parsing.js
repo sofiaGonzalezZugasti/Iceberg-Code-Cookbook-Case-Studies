@@ -7,17 +7,19 @@
 //   'es' for Spanish, 'en' for English, 'fr' for French
 // A wrong locale causes month names to fail silently and return null.
 
-function parseDate(raw, locale = "es") {
+function parseDate(raw, locale = 'es') {
   if (!raw) return null;
+  const normalized = raw.trim().replace(/\s+/g, ' ');
   const formats = [
-    "DD/MM/YYYY", "D/M/YYYY",
-    "DD-MM-YYYY", "YYYY-MM-DD",
-    "D MMMM YYYY", "DD MMMM YYYY",
-    "MMMM D, YYYY", "MMMM DD, YYYY",
-    "YYYY-MM-DDTHH:mm:ssZ",
+    'MM/DD/YYYY',
+    'DD/MM/YYYY', 'D/M/YYYY',
+    'DD-MM-YYYY', 'YYYY-MM-DD',
+    'D MMMM YYYY', 'DD MMMM YYYY',
+    'MMMM D, YYYY', 'MMMM DD, YYYY',
+    'YYYY-MM-DDTHH:mm:ssZ',
   ];
-  const d = moment(raw.trim(), formats, locale);
-  return d.isValid() ? d.format("YYYY-MM-DD") : null;
+  const d = moment(normalized, formats, locale, true);
+  return d.isValid() ? d.format('YYYY-MM-DD') : null;
 }
 
 // Extract year only (when full date is unavailable)
