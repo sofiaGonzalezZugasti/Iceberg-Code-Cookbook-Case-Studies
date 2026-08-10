@@ -36,20 +36,87 @@ I'm going to give you a piece of code or a case study description. Your job is t
        - WARNINGS / GOTCHAS: any edge cases or things to watch out for
      - The cleaned and readable code below
 
-   - If it's a CASE STUDY: output a ready-to-commit .md file following this structure:
-     - Title (DP number + source name)
-     - Source URL
-     - Challenge: what made this source non-trivial
-     - Solution: what approach solved it
-     - Key snippets: the most important code fragments (with brief explanations)
-     - Gotchas: things that would trip up someone doing this again
+   - If it's a CASE STUDY: output a ready-to-commit .md file following this EXACT structure:
 
-3. GIT INSTRUCTIONS: tell me exactly:
+     # Case Study: <DP number> — <Full source name>
+
+     ## Overview
+     | Field | Value |
+     |---|---|
+     | **Project ID** | `DP<number>` |
+     | **Full name** | <full source name> |
+     | **Country** | <country> |
+     | **Source URL** | <url> |
+     | **Source type** | <e.g. "JSON API (search) + HTML detail pages + PDFs"> |
+     | **Hooks used** | fetchURL, discoverLinks, parsePage |
+     | **Status** | Done |
+
+     ## What was crawled / parsed
+     <1–3 sentences describing what the source contains and what was collected>
+
+     ## Crawler
+
+     ### Seed URLs
+     <the seed URL(s)>
+
+     ### Whitelist patterns
+     <regex patterns used>
+
+     ### fetchURL strategy
+     <explain the approach: standard GET, POST, stateful form, binary download, etc.>
+     <include the key code snippet if relevant>
+     → `crawlers/fetchURL/<relevant-snippet>.js`
+
+     ### discoverLinks strategy
+     <explain how links are extracted and filtered>
+     <include the key code snippet if relevant>
+     → `crawlers/discoverLinks/<relevant-snippet>.js`
+
+     ## Parser
+
+     ### URL patterns
+     <regex patterns that trigger this parser>
+
+     ### parsePage strategy
+     <explain what the parser does: routes by content type, extracts fields, merges records, etc.>
+     <include key code snippet if relevant>
+
+     ### Fields extracted
+     | Field | Source | Notes |
+     |---|---|---|
+     | `fieldName` | where it comes from | any notes |
+
+     ## Challenges & Solutions
+
+     ### Challenge 1: <short title>
+     **Problem:** <what went wrong or was non-trivial>
+     **Solution:** <how it was solved>
+
+     ### Challenge 2: <short title>
+     ...
+
+     ## Gotchas
+     - <things that would trip someone up doing this again>
+     - <hardcoded values that need updating>
+     - <site-specific quirks>
+
+3. FILENAME: the filename must be a kebab-case slug describing the TECHNICAL PATTERN,
+   not the source name or DP number. The DP number goes inside the file, in the Overview table.
+
+   Good examples:
+     json-api-search-html-detail-pages-pdfs.md
+     aspnet-webforms-stateful-pagination-pdfs.md
+     recursive-json-tree-api-pagination-pdfs.md
+
+   Bad examples (do NOT use these):
+     DP74366-us-court-of-appeals-ca5.md   ← DP number in filename
+     nc-ethics-opinions.md                ← source name, not technical pattern
+
+4. GIT INSTRUCTIONS: tell me exactly:
    - The full file path where the file should be saved
-   - The branch name to use (format: snippet/<filename> or case-study/<dp-number>)
    - The commit message following the convention:
        add: <filename> <subfolder> pattern        (for snippets)
-       add: case-study <dp-number> <source-name>  (for case studies)
+       add: case-study <slug>                     (for case studies)
 
 Here is my content:
 
@@ -66,7 +133,7 @@ Here is my content:
 4. You'll get back:
    - The folder + filename where it goes
    - The file contents ready to copy-paste
-   - The branch name and commit message to use
+   - The commit message to use
 
 ---
 
@@ -84,7 +151,7 @@ function getSeeds() {
 }
 ```
 
-**For a case study** — paste your notes, even rough ones:
+**For a case study** — paste your notes, screenshots, and/or code, even rough:
 ```
 DP74201 - Spanish Supreme Court
 Problem: the site uses __VIEWSTATE and breaks if you don't send the right POST headers.
@@ -100,6 +167,9 @@ The parser was straightforward once we had the HTML.
 | Type | Format | Example |
 |---|---|---|
 | Snippet | `kebab-case.js` | `aspnet-webforms-pagination.js` |
-| Case study | `DP<number>-<source-slug>.md` | `DP74366-us-court-of-appeals-ca5.md` |
+| Case study | `<technical-pattern-slug>.md` | `aspnet-webforms-stateful-pagination-pdfs.md` |
 | Branch (snippet) | `snippet/<filename-no-extension>` | `snippet/aspnet-webforms-pagination` |
-| Branch (case study) | `case-study/<dp-number>` | `case-study/DP74201` |
+| Branch (case study) | `case-study/<slug>` | `case-study/aspnet-webforms-stateful-pagination-pdfs` |
+
+> **Note:** The DP number goes inside the file (in the Overview table), not in the filename.
+> The filename describes the technical pattern so anyone can recognise it matches their project at a glance.
