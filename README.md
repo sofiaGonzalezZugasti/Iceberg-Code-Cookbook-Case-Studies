@@ -59,6 +59,7 @@ Copy the snippet into your Iceberg job, adjust the selectors/URLs/field names to
 | `post-json-api.js` | POST to a JSON search API with custom security headers |
 | `aspnet-webforms-pagination.js` | Handle ASP.NET WebForms stateful pagination (`__VIEWSTATE`) |
 | `datatables-ajax-nonce.js` | Paginate a WordPress DataTables (WDT) AJAX endpoint with nonce |
+| `recaptcha-v2-2captcha-api.js` | Solve a Google reCAPTCHA v2 with the 2captcha API (key from Secrets Manager, never in the URL) |
 
 ### `discoverLinks`
 
@@ -115,6 +116,7 @@ Real projects with notes on challenges, solutions, and gotchas. Add a case study
 | `_template.md` | Template — copy this when adding a new case study |
 | `DP71206-nc-ethics-opinions.md` | US – North Carolina Ethics Opinions |
 | `DP74366-us-court-of-appeals-ca5.md` | US – Court of Appeals, 5th Circuit |
+| `aspnet-webforms-recaptcha-v2-2captcha-api-pdfs.md` | US – Louisiana Court of Appeal, Fifth Circuit (DP76774) |
 
 ---
 
@@ -158,6 +160,7 @@ Copy `case-studies/_template.md`, fill in the fields, and open a PR.
 |---|---|
 | Most sites | `zone-g1-country-<cc>` |
 | Multi-step login (same IP) | `zone-g1-country-es-session-<id>` |
-| Site has CAPTCHAs | `zone-2captcha-country-<cc>` |
+| WAF JS challenge / image CAPTCHA | `zone-2captcha-country-<cc>` |
+| Google reCAPTCHA | Not a zone: 2captcha API from code → `crawlers/fetchURL/recaptcha-v2-2captcha-api.js` |
 | Site blocks proxies | `no-proxy` |
 | Playwright (browser) | `playwrightManager.setProxyZone("g1")` |
