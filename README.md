@@ -115,6 +115,7 @@ Real projects with notes on challenges, solutions, and gotchas. Add a case study
 | `_template.md` | Template — copy this when adding a new case study |
 | `DP71206-nc-ethics-opinions.md` | US – North Carolina Ethics Opinions |
 | `DP74366-us-court-of-appeals-ca5.md` | US – Court of Appeals, 5th Circuit |
+| `DP77296-fr-amf.md` | France – Autorité des Marchés Financiers (AMF) |
 
 ---
 
