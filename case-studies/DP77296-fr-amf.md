@@ -183,5 +183,4 @@ to a hard checklist item in `docs/parser-pattern-reference.md` instead of a repe
 
 ---
 
-## Requirements doc
-See `tickets/done/DP-77296-fr-amf/ticket.md` in the Iceberg working directory (parent CONTENT 74180).
+
